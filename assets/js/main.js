@@ -1,7 +1,7 @@
 // Umbrella Inmobiliaria SAS - JS principal
 // 1) CONFIGURA AQUÍ tus datos (WhatsApp y correo)
 // WhatsApp en formato internacional sin + ni espacios. Ej: 573001234567
-const WHATSAPP_NUMBER = "573000000000"; // <-- CAMBIA ESTO
+const WHATSAPP_NUMBER = "573102892568"; // <-- CAMBIA ESTO
 const COMPANY_EMAIL = "tucorreo@dominio.com"; // <-- CAMBIA ESTO (solo texto informativo)
 
 // 2) EmailJS (para que el formulario te envíe un correo SIN backend)
