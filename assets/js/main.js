@@ -1,142 +1,181 @@
-// Umbrella Inmobiliaria SAS - JS principal
-// 1) CONFIGURA AQUÍ tus datos (WhatsApp y correo)
-// WhatsApp en formato internacional sin + ni espacios. Ej: 573001234567
-const WHATSAPP_NUMBER = "573000000000"; // <-- CAMBIA ESTO
-const COMPANY_EMAIL = "contacto@dominio.com"; // <-- CAMBIA ESTO (solo texto informativo)
+/* ==========================
+   CONFIGURACIÓN (EDITA AQUÍ)
+   ========================== */
 
-// 2) EmailJS (para que el formulario te envíe un correo SIN backend)
-// - Crea cuenta en https://www.emailjs.com/
-// - Crea un Email Service (Gmail / Outlook / etc.)
-// - Crea un Email Template con variables: name, phone, email, property, city, service, message
-// - Copia tus IDs aquí:
-const EMAILJS_PUBLIC_KEY = "REEMPLAZA_PUBLIC_KEY";
-const EMAILJS_SERVICE_ID = "REEMPLAZA_SERVICE_ID";
-const EMAILJS_TEMPLATE_ID = "REEMPLAZA_TEMPLATE_ID";
+// WhatsApp en formato internacional SIN +, SIN espacios.
+// Ejemplo Colombia: 573001234567
+const WHATSAPP_NUMBER = "573102892568";
 
-function buildWhatsAppLink(message) {
-  const msg = encodeURIComponent(message || "Hola, quiero una asesoría con Umbrella Inmobiliaria SAS.");
-  return `https://wa.me/${WHATSAPP_NUMBER}?text=${msg}`;
+// Correo corporativo (solo para mostrar en la web)
+const COMPANY_EMAIL = "director@umbrellainmobiliaria.com";
+
+// Si quieres enviar el formulario por EmailJS (opcional), completa estos datos:
+const EMAILJS_ENABLED = false;
+const EMAILJS_PUBLIC_KEY = "_LprMTcZwZZondV0m";
+const EMAILJS_SERVICE_ID = "service_uhg81za";
+const EMAILJS_TEMPLATE_ID = "template_2i7mtnl";
+
+/* ==========================
+   UTILIDADES
+   ========================== */
+const $ = (sel, el = document) => el.querySelector(sel);
+
+function escapeForWhatsApp(text) {
+  // encodeURIComponent es suficiente para el mensaje
+  return encodeURIComponent(text);
 }
 
-function setWhatsLinks() {
-  const defaultMsg = "Hola, quiero una asesoría con Umbrella Inmobiliaria SAS.";
-  const wa = buildWhatsAppLink(defaultMsg);
+function buildWhatsAppMessage(payload) {
+  const lines = [
+    "Hola, quiero una propuesta para mi copropiedad.",
+    "",
+    `Nombre: ${payload.name || "-"}`,
+    `Teléfono: ${payload.phone || "-"}`,
+    `Correo: ${payload.email || "-"}`,
+    `Servicio: ${payload.service || "-"}`,
+    "",
+    `Mensaje: ${payload.message || "-"}`,
+  ];
+  return lines.join("\n");
+}
 
-  const btnWhats = document.getElementById("btnWhats");
-  const btnWhatsHero = document.getElementById("btnWhatsHero");
-  const whatsFloat = document.getElementById("whatsFloat");
+function openWhatsApp(payload) {
+  const msg = buildWhatsAppMessage(payload);
+  const url = `https://wa.me/${WHATSAPP_NUMBER}?text=${escapeForWhatsApp(msg)}`;
+  window.open(url, "_blank", "noopener,noreferrer");
+}
 
-  if (btnWhats) btnWhats.href = wa;
-  if (btnWhatsHero) btnWhatsHero.href = wa;
-  if (whatsFloat) whatsFloat.href = wa;
+/* ==========================
+   MENÚ RESPONSIVE
+   ========================== */
+const navToggle = $("#navToggle");
+const navMenu = $("#navMenu");
 
-  const waNumberText = document.getElementById("waNumberText");
-  if (waNumberText) {
-    const pretty = WHATSAPP_NUMBER.startsWith("57")
-      ? `+${WHATSAPP_NUMBER.slice(0, 2)} ${WHATSAPP_NUMBER.slice(2, 5)} ${WHATSAPP_NUMBER.slice(5, 8)} ${WHATSAPP_NUMBER.slice(8)}`
-      : `+${WHATSAPP_NUMBER}`;
-    waNumberText.textContent = pretty;
+if (navToggle && navMenu) {
+  navToggle.addEventListener("click", () => {
+    const isOpen = navMenu.classList.toggle("is-open");
+    navToggle.setAttribute("aria-expanded", String(isOpen));
+  });
+
+  // Cerrar al hacer click en un link
+  navMenu.addEventListener("click", (e) => {
+    const target = e.target;
+    if (target && target.classList && target.classList.contains("nav__link")) {
+      navMenu.classList.remove("is-open");
+      navToggle.setAttribute("aria-expanded", "false");
+    }
+  });
+
+  // Cerrar al hacer click fuera
+  document.addEventListener("click", (e) => {
+    if (!navMenu.classList.contains("is-open")) return;
+    const inside = navMenu.contains(e.target) || navToggle.contains(e.target);
+    if (!inside) {
+      navMenu.classList.remove("is-open");
+      navToggle.setAttribute("aria-expanded", "false");
+    }
+  });
+}
+
+/* ==========================
+   DATOS EN UI
+   ========================== */
+const yearEl = $("#year");
+if (yearEl) yearEl.textContent = String(new Date().getFullYear());
+
+const whatsappDisplay = $("#whatsappDisplay");
+if (whatsappDisplay) {
+  // Mostrar con +
+  whatsappDisplay.textContent = `+${WHATSAPP_NUMBER}`;
+}
+
+const emailDisplay = $("#emailDisplay");
+if (emailDisplay) emailDisplay.textContent = COMPANY_EMAIL;
+
+/* ==========================
+   FORMULARIO
+   ========================== */
+const form = $("#contactForm");
+const submitBtn = $("#submitBtn");
+const formHint = $("#formHint");
+
+function setLoading(isLoading) {
+  if (!submitBtn) return;
+  submitBtn.disabled = isLoading;
+  submitBtn.textContent = isLoading ? "Enviando..." : "Enviar solicitud";
+}
+
+function getFormPayload(formEl) {
+  const fd = new FormData(formEl);
+  return {
+    name: (fd.get("name") || "").toString().trim(),
+    phone: (fd.get("phone") || "").toString().trim(),
+    email: (fd.get("email") || "").toString().trim(),
+    service: (fd.get("service") || "").toString().trim(),
+    message: (fd.get("message") || "").toString().trim(),
+  };
+}
+
+async function sendWithEmailJS(payload) {
+  // Carga EmailJS desde CDN si está habilitado
+  // (No lo cargamos si no se usa)
+  if (!window.emailjs) {
+    await new Promise((resolve, reject) => {
+      const s = document.createElement("script");
+      s.src = "https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js";
+      s.onload = resolve;
+      s.onerror = reject;
+      document.head.appendChild(s);
+    });
   }
 
-  const emailText = document.getElementById("emailText");
-  if (emailText) emailText.textContent = COMPANY_EMAIL;
-}
+  // Inicializar
+  window.emailjs.init(EMAILJS_PUBLIC_KEY);
 
-function initQuickButtons() {
-  document.querySelectorAll(".quick-actions__item").forEach(btn => {
-    btn.addEventListener("click", () => {
-      const msg = btn.getAttribute("data-msg") || "";
-      window.open(buildWhatsAppLink(msg), "_blank", "noopener");
-    });
+  // Enviar
+  return window.emailjs.send(EMAILJS_SERVICE_ID, EMAILJS_TEMPLATE_ID, {
+    from_name: payload.name,
+    from_email: payload.email,
+    phone: payload.phone,
+    service: payload.service,
+    message: payload.message,
   });
 }
 
-function initMenu() {
-  const menuBtn = document.getElementById("menuBtn");
-  const nav = document.getElementById("nav");
-  if (!menuBtn || !nav) return;
-
-  menuBtn.addEventListener("click", () => {
-    const isOpen = nav.classList.toggle("isOpen");
-    menuBtn.setAttribute("aria-expanded", String(isOpen));
-  });
-
-  nav.querySelectorAll("a").forEach(a => {
-    a.addEventListener("click", () => {
-      nav.classList.remove("isOpen");
-      menuBtn.setAttribute("aria-expanded", "false");
-    });
-  });
-}
-
-async function loadEmailJS() {
-  return new Promise((resolve, reject) => {
-    const s = document.createElement("script");
-    s.src = "https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js";
-    s.onload = () => resolve();
-    s.onerror = () => reject(new Error("No se pudo cargar EmailJS"));
-    document.head.appendChild(s);
-  });
-}
-
-function buildFallbackMessage(data) {
-  return `Hola, soy ${data.name}.\nTeléfono: ${data.phone}.\nCorreo: ${data.email}.\nCopropiedad: ${data.property}.\nCiudad: ${data.city}.\nServicio: ${data.service}.\nMensaje: ${data.message}`;
-}
-
-function initForm() {
-  const form = document.getElementById("contactForm");
-  const status = document.getElementById("formStatus");
-  const sendBtn = document.getElementById("sendBtn");
-  if (!form) return;
+if (form) {
+  if (formHint) {
+    formHint.textContent = EMAILJS_ENABLED
+      ? "El formulario se enviará por correo (EmailJS)."
+      : "Al enviar, abriremos WhatsApp con tu mensaje (o se enviará por correo si activas EmailJS).";
+  }
 
   form.addEventListener("submit", async (e) => {
     e.preventDefault();
-    if (status) status.textContent = "";
-    if (sendBtn) sendBtn.disabled = true;
 
-    const data = Object.fromEntries(new FormData(form).entries());
+    const payload = getFormPayload(form);
 
-    if (!data.name || !data.phone || !data.email || !data.property || !data.city || !data.service || !data.message) {
-      if (status) status.textContent = "Por favor completa todos los campos.";
-      if (sendBtn) sendBtn.disabled = false;
+    // Validación mínima
+    if (!payload.name || !payload.email || !payload.message) {
+      alert("Por favor completa nombre, correo y mensaje.");
       return;
     }
 
     try {
-      const notConfigured = [EMAILJS_PUBLIC_KEY, EMAILJS_SERVICE_ID, EMAILJS_TEMPLATE_ID]
-        .some(value => !value || value.startsWith("REEMPLAZA"));
+      setLoading(true);
 
-      if (notConfigured) {
-        window.open(buildWhatsAppLink(buildFallbackMessage(data)), "_blank", "noopener");
-        if (status) status.textContent = "Abrimos WhatsApp para enviar tu solicitud. Configura EmailJS para recibir correos automáticos.";
+      if (EMAILJS_ENABLED) {
+        await sendWithEmailJS(payload);
+        alert("¡Listo! Tu solicitud fue enviada por correo.");
         form.reset();
-        return;
+      } else {
+        openWhatsApp(payload);
+        form.reset();
       }
-
-      await loadEmailJS();
-      // eslint-disable-next-line no-undef
-      emailjs.init({ publicKey: EMAILJS_PUBLIC_KEY });
-      // eslint-disable-next-line no-undef
-      await emailjs.send(EMAILJS_SERVICE_ID, EMAILJS_TEMPLATE_ID, data);
-
-      if (status) status.textContent = "¡Mensaje enviado! Te contactaremos pronto.";
-      form.reset();
     } catch (err) {
       console.error(err);
-      if (status) status.textContent = "No se pudo enviar el mensaje. Intenta por WhatsApp.";
+      alert("Ocurrió un error al enviar. Intenta de nuevo.");
     } finally {
-      if (sendBtn) sendBtn.disabled = false;
+      setLoading(false);
     }
   });
 }
-
-function setYear(){
-  const y = document.getElementById("year");
-  if (y) y.textContent = String(new Date().getFullYear());
-}
-
-setYear();
-setWhatsLinks();
-initQuickButtons();
-initMenu();
-initForm();

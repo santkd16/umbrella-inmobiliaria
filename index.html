@@ -4,392 +4,416 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Umbrella Inmobiliaria SAS | Servicios integrales para Propiedades Horizontales</title>
-  <meta name="description" content="Administración integral de Propiedades Horizontales en Colombia: gestión administrativa, contable y de cartera con enfoque transparente y soporte documental." />
+  <meta name="description" content="Administración integral de Propiedades Horizontales en Colombia: gestión administrativa, contable y de cartera con enfoque en control, transparencia y tecnología." />
+
+  <!-- Open Graph / Social -->
   <meta property="og:title" content="Umbrella Inmobiliaria SAS" />
-  <meta property="og:description" content="Servicios integrales para Propiedades Horizontales: administración, contabilidad, cartera y soporte documental." />
+  <meta property="og:description" content="Servicios integrales para Propiedades Horizontales en Colombia: administración, contabilidad, mantenimiento, conserjería, revisoría fiscal y recuperación de cartera." />
   <meta property="og:type" content="website" />
-  <meta property="og:image" content="assets/img/hero-placeholder.svg" />
   <meta property="og:url" content="https://example.com" />
+  <meta property="og:image" content="assets/img/hero-placeholder.svg" />
+
   <link rel="icon" type="image/png" href="assets/img/favicon.png" />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
   <link rel="stylesheet" href="assets/css/styles.css" />
 </head>
+
 <body>
-
-  <!-- Top bar -->
-  <div class="topbar">
-    <div class="container topbar__content">
-      <span>Servicios integrales para Propiedades Horizontales</span>
-      <a class="topbar__cta" href="#contacto">Solicitar asesorías</a>
-    </div>
-  </div>
-
-  <!-- Header -->
-  <header class="header" id="inicio">
-    <div class="container header__content">
-      <a class="brand" href="#inicio" aria-label="Ir al inicio">
+  <!-- HEADER -->
+  <header class="header" id="top">
+    <div class="container header__inner">
+      <a class="brand" href="#top" aria-label="Ir al inicio">
         <img class="brand__logo" src="assets/img/logo-umbrella.jpg" alt="Umbrella Inmobiliaria SAS" />
-        <span class="brand__text">Umbrella Inmobiliaria SAS</span>
+        <div class="brand__text">
+          <span class="brand__name">Umbrella Inmobiliaria</span>
+          <span class="brand__tag">Propiedades Horizontales • Colombia</span>
+        </div>
       </a>
 
-      <nav class="nav" id="nav">
-        <a href="#inicio">Inicio</a>
-        <a href="#servicios">Servicios</a>
-        <a href="#metodologia">Cómo trabajamos</a>
-        <a href="#beneficios">Beneficios</a>
-        <a href="#resultados">Casos/Resultados</a>
-        <a href="#faq">FAQ</a>
-        <a href="#contacto">Contacto</a>
-      </nav>
+      <button class="nav__toggle" id="navToggle" aria-expanded="false" aria-controls="navMenu">
+        <span class="sr-only">Abrir menú</span>
+        <span class="nav__bar"></span>
+        <span class="nav__bar"></span>
+        <span class="nav__bar"></span>
+      </button>
 
-      <div class="header__actions">
-        <a class="btn btn--ghost btn--sm" href="#contacto">WhatsApp</a>
-        <button class="menuBtn" id="menuBtn" aria-label="Abrir menú" aria-expanded="false">
-          ☰
-        </button>
-      </div>
+      <nav class="nav" id="navMenu">
+        <a class="nav__link" href="#servicios">Servicios</a>
+        <a class="nav__link" href="#proceso">Proceso</a>
+        <a class="nav__link" href="#beneficios">Beneficios</a>
+        <a class="nav__link" href="#faq">FAQ</a>
+        <a class="btn btn--sm btn--primary" href="#contacto">Cotizar</a>
+      </nav>
     </div>
   </header>
 
-  <section class="hero hero--cover">
-    <div class="hero__bg" aria-hidden="true">
-      <img src="assets/img/hero-placeholder.svg" alt="" />
-    </div>
+  <!-- HERO -->
+  <section class="hero">
     <div class="container hero__grid">
       <div class="hero__content">
-        <p class="hero__tag">Servicios profesionales de</p>
-        <h1>Gestión integral para Propiedades Horizontales con transparencia total.</h1>
-        <p class="hero__lead">
-          Administración, contabilidad y recuperación de cartera con reportes claros, seguimiento continuo y soporte
-          documental para la junta y la copropiedad.
+        <p class="pill">
+          <span class="pill__dot"></span>
+          Administración profesional y control financiero
         </p>
-        <div class="hero__actions">
-          <a class="btn btn--primary" href="#contacto">Solicitar asesoría</a>
-          <a class="btn btn--ghost" id="btnWhatsHero" href="#">Escribir por WhatsApp</a>
+
+        <h1 class="hero__title">
+          Servicios integrales para <span class="text-gradient">Propiedades Horizontales</span> en Colombia
+        </h1>
+
+        <p class="hero__subtitle">
+          Administración, contabilidad, mantenimiento, conserjería, revisoría fiscal, auditoría y recuperación de cartera.
+          Mejoramos la experiencia de tu copropiedad con procesos claros, soporte oportuno y tecnología.
+        </p>
+
+        <div class="hero__cta">
+          <a class="btn btn--primary" href="#contacto">Solicitar propuesta</a>
+          <a class="btn btn--ghost" href="#servicios">Ver servicios</a>
         </div>
-        <div class="hero__metrics">
-          <div class="metric">
-            <span class="metric__icon">📊</span>
-            <div>
-              <strong>Control y seguimiento</strong>
-              <p class="muted">Indicadores claros para la junta y la administración.</p>
-            </div>
+
+        <div class="hero__stats" role="list">
+          <div class="stat" role="listitem">
+            <span class="stat__value">+10</span>
+            <span class="stat__label">Servicios integrados</span>
           </div>
-          <div class="metric">
-            <span class="metric__icon">🧾</span>
-            <div>
-              <strong>Soporte documental</strong>
-              <p class="muted">Evidencias organizadas para decisiones y auditorías.</p>
-            </div>
+          <div class="stat" role="listitem">
+            <span class="stat__value">24/7</span>
+            <span class="stat__label">Canales de atención</span>
+          </div>
+          <div class="stat" role="listitem">
+            <span class="stat__value">100%</span>
+            <span class="stat__label">Trazabilidad documental</span>
           </div>
         </div>
       </div>
 
-      <div class="hero__aside">
+      <div class="hero__media">
         <div class="hero__card">
-          <p class="hero__card-title">Respuesta rápida</p>
-          <p class="muted">Te guiamos con un diagnóstico inicial y el siguiente paso para tu copropiedad.</p>
-          <div class="quick-actions">
-            <button class="quick-actions__item" data-msg="Hola, necesito una asesoría de administración para mi copropiedad.">
-              Administración integral
-            </button>
-            <button class="quick-actions__item" data-msg="Hola, necesito apoyo en cartera y recuperación de pagos.">
-              Recuperación de cartera
-            </button>
-            <button class="quick-actions__item" data-msg="Hola, quiero revisar contabilidad y reportes financieros.">
-              Contabilidad y reportes
-            </button>
+          <img class="hero__img" src="assets/img/portada 1.jpg" alt="Conjunto residencial moderno en Colombia" />
+          <div class="hero__badge">
+            <span class="hero__badgeTitle">Gestión integral</span>
+            <span class="hero__badgeText">Control • Transparencia • Confianza</span>
           </div>
         </div>
       </div>
     </div>
+
+    <div class="hero__bg" aria-hidden="true"></div>
   </section>
 
+  <!-- SERVICES -->
   <section class="section" id="servicios">
     <div class="container">
       <div class="section__head">
-        <p class="eyebrow">Objeto social</p>
-        <h2>Portafolio de servicios integrales</h2>
-        <p class="muted">Soluciones completas para la administración y operación de tu Propiedad Horizontal.</p>
+        <h2 class="section__title">Nuestros servicios</h2>
+        <p class="section__desc">
+          Soluciones completas para copropiedades: desde la administración y contabilidad hasta la
+          recuperación de cartera y automatización de portería.
+        </p>
       </div>
-      <div class="cards">
+
+      <div class="grid cards">
         <article class="card">
-          <h3>Administración</h3>
-          <p>Gestión operativa y administrativa con seguimiento a proveedores, asambleas y comunicación con la comunidad.</p>
+          <div class="card__icon">🏢</div>
+          <h3 class="card__title">Administración</h3>
+          <p class="card__text">
+            Gestión administrativa integral: asambleas, consejos, proveedores, seguimiento de procesos y
+            cumplimiento normativo.
+          </p>
         </article>
+
         <article class="card">
-          <h3>Contabilidad</h3>
-          <p>Registro, conciliaciones, reportes y cierre contable con enfoque en claridad y cumplimiento.</p>
+          <div class="card__icon">📊</div>
+          <h3 class="card__title">Contabilidad</h3>
+          <p class="card__text">
+            Contabilidad organizada y reportes claros: estados financieros, conciliaciones, soportes y control
+            de ejecución presupuestal.
+          </p>
         </article>
+
         <article class="card">
-          <h3>Aseo</h3>
-          <p>Coordinación de servicios de limpieza para mantener espacios comunes presentables y seguros.</p>
+          <div class="card__icon">🧹</div>
+          <h3 class="card__title">Aseo</h3>
+          <p class="card__text">
+            Coordinación de personal y calidad del servicio: programación, seguimiento y estandarización de rutinas.
+          </p>
         </article>
+
         <article class="card">
-          <h3>Mantenimiento</h3>
-          <p>Planes preventivos y correctivos para proteger activos y reducir costos imprevistos.</p>
+          <div class="card__icon">🧰</div>
+          <h3 class="card__title">Mantenimiento</h3>
+          <p class="card__text">
+            Preventivo y correctivo: cronogramas, control de contratistas, registro de novedades y
+            priorización de riesgos.
+          </p>
         </article>
+
         <article class="card">
-          <h3>Conserjería</h3>
-          <p>Supervisión de personal y protocolos de portería para un control de acceso confiable.</p>
+          <div class="card__icon">🛡️</div>
+          <h3 class="card__title">Conserjería</h3>
+          <p class="card__text">
+            Protocolos, control de acceso, gestión de visitantes y soporte a la operación diaria del conjunto.
+          </p>
         </article>
+
         <article class="card">
-          <h3>Revisoría Fiscal</h3>
-          <p>Revisión técnica y cumplimiento normativo para fortalecer la confianza de la copropiedad.</p>
+          <div class="card__icon">🧾</div>
+          <h3 class="card__title">Revisoría Fiscal</h3>
+          <p class="card__text">
+            Acompañamiento y revisión independiente: control interno, cumplimiento y mejora continua.
+          </p>
         </article>
+
         <article class="card">
-          <h3>Auditoría</h3>
-          <p>Evaluación de procesos internos, riesgos y oportunidades de mejora para decisiones informadas.</p>
+          <div class="card__icon">🔍</div>
+          <h3 class="card__title">Auditoría</h3>
+          <p class="card__text">
+            Evaluación de procesos y riesgos: hallazgos, recomendaciones y seguimiento con evidencia.
+          </p>
         </article>
+
         <article class="card">
-          <h3>Recuperación de Cartera</h3>
-          <p>Estrategia prejurídica y jurídica con seguimiento responsable y comunicación profesional.</p>
+          <div class="card__icon">💬</div>
+          <h3 class="card__title">Recuperación de cartera</h3>
+          <p class="card__text">
+            Estrategias de cobro y conciliación: comunicación efectiva, acuerdos, seguimiento y soportes.
+          </p>
         </article>
+
         <article class="card">
-          <h3>Estudio de costos y presupuestos</h3>
-          <p>Proyecciones y control presupuestal para optimizar recursos y planear inversiones.</p>
+          <div class="card__icon">🧮</div>
+          <h3 class="card__title">Costos y presupuestos</h3>
+          <p class="card__text">
+            Estructuración y control presupuestal: análisis, proyección, ejecución y rendición de cuentas.
+          </p>
         </article>
+
         <article class="card">
-          <h3>Automatización de portería</h3>
-          <p>Asesoría para implementar tecnología de acceso y monitoreo con enfoque en eficiencia.</p>
-        </article>
-        <article class="card card--highlight">
-          <h3>Servicios afines</h3>
-          <p>Coordinamos aliados estratégicos para necesidades específicas de la copropiedad.</p>
+          <div class="card__icon">📷</div>
+          <h3 class="card__title">Automatización de portería</h3>
+          <p class="card__text">
+            Digitalización de accesos y procesos: registro, alertas, control y trazabilidad.
+          </p>
         </article>
       </div>
     </div>
   </section>
 
-  <section class="section section--alt" id="metodologia">
+  <!-- PROCESS -->
+  <section class="section section--muted" id="proceso">
     <div class="container">
       <div class="section__head">
-        <p class="eyebrow">Cómo trabajamos</p>
-        <h2>Metodología clara en 4 pasos</h2>
+        <h2 class="section__title">¿Cómo trabajamos?</h2>
+        <p class="section__desc">
+          Un proceso claro desde el diagnóstico inicial hasta la ejecución y seguimiento con evidencias.
+        </p>
       </div>
+
       <div class="steps">
-        <article class="step">
-          <span class="step__icon">🔍</span>
-          <h3>Diagnóstico</h3>
-          <p>Levantamos información y prioridades para entender el estado actual.</p>
-        </article>
-        <article class="step">
-          <span class="step__icon">🗂️</span>
-          <h3>Plan de trabajo</h3>
-          <p>Definimos cronograma, responsables y metas de mejora.</p>
-        </article>
-        <article class="step">
-          <span class="step__icon">⚙️</span>
-          <h3>Ejecución con seguimiento</h3>
-          <p>Implementamos acciones con control y comunicación permanente.</p>
-        </article>
-        <article class="step">
-          <span class="step__icon">📑</span>
-          <h3>Reporte y soporte documental</h3>
-          <p>Entregamos informes y evidencias para la junta y la copropiedad.</p>
-        </article>
+        <div class="step">
+          <div class="step__num">1</div>
+          <div class="step__body">
+            <h3 class="step__title">Diagnóstico</h3>
+            <p class="step__text">Revisión de necesidades, documentos y estado actual de la copropiedad.</p>
+          </div>
+        </div>
+
+        <div class="step">
+          <div class="step__num">2</div>
+          <div class="step__body">
+            <h3 class="step__title">Propuesta</h3>
+            <p class="step__text">Plan de trabajo, alcance, tiempos, indicadores y canales de atención.</p>
+          </div>
+        </div>
+
+        <div class="step">
+          <div class="step__num">3</div>
+          <div class="step__body">
+            <h3 class="step__title">Implementación</h3>
+            <p class="step__text">Ejecución del servicio con control documental, reportes y seguimiento.</p>
+          </div>
+        </div>
+
+        <div class="step">
+          <div class="step__num">4</div>
+          <div class="step__body">
+            <h3 class="step__title">Mejora continua</h3>
+            <p class="step__text">Optimización de procesos, auditorías internas y acompañamiento permanente.</p>
+          </div>
+        </div>
       </div>
     </div>
   </section>
 
+  <!-- BENEFITS -->
   <section class="section" id="beneficios">
     <div class="container">
       <div class="section__head">
-        <p class="eyebrow">Beneficios</p>
-        <h2>Diferenciadores que generan confianza</h2>
+        <h2 class="section__title">Beneficios</h2>
+        <p class="section__desc">
+          Enfoque en control, transparencia y servicio para mejorar la operación y las finanzas de tu copropiedad.
+        </p>
       </div>
-      <div class="benefits">
+
+      <div class="grid benefits">
         <div class="benefit">
-          <h3>Transparencia y soporte documental</h3>
-          <p class="muted">Información organizada y trazable para decisiones seguras.</p>
+          <h3 class="benefit__title">Control financiero</h3>
+          <p class="benefit__text">Reportes claros, conciliaciones y soporte documental para decisiones informadas.</p>
         </div>
         <div class="benefit">
-          <h3>Control y seguimiento</h3>
-          <p class="muted">KPIs y reportes periódicos para la junta y administración.</p>
+          <h3 class="benefit__title">Atención oportuna</h3>
+          <p class="benefit__text">Canales definidos y seguimiento a solicitudes con trazabilidad.</p>
         </div>
         <div class="benefit">
-          <h3>Enfoque financiero + operativo</h3>
-          <p class="muted">Visión integral para optimizar recursos y operación.</p>
+          <h3 class="benefit__title">Procesos estandarizados</h3>
+          <p class="benefit__text">Rutinas y controles para administración, mantenimiento y cartera.</p>
         </div>
         <div class="benefit">
-          <h3>Comunicación clara</h3>
-          <p class="muted">Mensajes profesionales con residentes, consejo y proveedores.</p>
+          <h3 class="benefit__title">Transparencia</h3>
+          <p class="benefit__text">Evidencia, actas, soportes y reportes consistentes.</p>
         </div>
         <div class="benefit">
-          <h3>Recuperación de cartera estratégica</h3>
-          <p class="muted">Acompañamiento en etapas prejurídicas y jurídicas según aplique.</p>
+          <h3 class="benefit__title">Cumplimiento</h3>
+          <p class="benefit__text">Acompañamiento en normas y gestión documental de la copropiedad.</p>
         </div>
         <div class="benefit">
-          <h3>Optimización de costos</h3>
-          <p class="muted">Análisis de gastos y plan de mejora continua.</p>
+          <h3 class="benefit__title">Tecnología</h3>
+          <p class="benefit__text">Automatización y digitalización para mejorar control y comunicación.</p>
         </div>
       </div>
     </div>
   </section>
 
-  <section class="section section--alt" id="resultados">
+  <!-- FAQ -->
+  <section class="section section--muted" id="faq">
     <div class="container">
       <div class="section__head">
-        <p class="eyebrow">Casos / Resultados</p>
-        <h2>Ejemplos de impacto</h2>
-        <p class="muted">Resultados típicos que alcanzan copropiedades cuando ordenan su gestión.</p>
+        <h2 class="section__title">Preguntas frecuentes</h2>
+        <p class="section__desc">Respuestas rápidas sobre nuestro servicio.</p>
       </div>
-      <div class="results">
-        <article class="result">
-          <h3>Mejoras en control interno</h3>
-          <p class="muted">Protocolos, actas y procesos alineados con las responsabilidades de la copropiedad.</p>
-        </article>
-        <article class="result">
-          <h3>Orden en la información contable</h3>
-          <p class="muted">Reportes claros, conciliaciones al día y soporte documental disponible.</p>
-        </article>
-        <article class="result">
-          <h3>Seguimiento de cartera</h3>
-          <p class="muted">Flujos de comunicación definidos para la recuperación responsable de pagos.</p>
-        </article>
-      </div>
-    </div>
-  </section>
 
-  <section class="section" id="faq">
-    <div class="container">
-      <div class="section__head">
-        <p class="eyebrow">FAQ</p>
-        <h2>Preguntas frecuentes</h2>
-      </div>
-      <div class="faq">
-        <details>
-          <summary>¿Qué incluye la administración integral?</summary>
-          <p>Incluye gestión operativa, contable, de proveedores, comunicación y soporte documental según el plan acordado.</p>
+      <div class="accordion" id="faqAccordion">
+        <details class="accordion__item">
+          <summary class="accordion__summary">¿En qué ciudades prestan servicio?</summary>
+          <div class="accordion__content">
+            <p>Principalmente en Colombia. Podemos evaluar cobertura según ubicación y necesidades del conjunto.</p>
+          </div>
         </details>
-        <details>
-          <summary>¿Cómo reportan la contabilidad?</summary>
-          <p>Entregamos reportes periódicos con conciliaciones, estados y evidencias claras para la junta.</p>
+
+        <details class="accordion__item">
+          <summary class="accordion__summary">¿Qué incluye la administración integral?</summary>
+          <div class="accordion__content">
+            <p>Gestión administrativa, seguimiento a proveedores, reportes, soporte documental y control de procesos.</p>
+          </div>
         </details>
-        <details>
-          <summary>¿Cómo manejan la cartera?</summary>
-          <p>Aplicamos seguimiento estructurado, recordatorios formales y acompañamiento en gestión prejurídica y jurídica.</p>
+
+        <details class="accordion__item">
+          <summary class="accordion__summary">¿Cómo manejan la recuperación de cartera?</summary>
+          <div class="accordion__content">
+            <p>Gestión de comunicación, acuerdos de pago, seguimiento, soportes y escalamiento según el caso.</p>
+          </div>
         </details>
-        <details>
-          <summary>¿Trabajan con conjuntos y edificios?</summary>
-          <p>Sí, adaptamos el servicio según el tamaño y las necesidades de cada copropiedad.</p>
-        </details>
-        <details>
-          <summary>¿Qué necesitan para iniciar?</summary>
-          <p>Documentación básica de la copropiedad, balances recientes y acuerdos internos vigentes.</p>
-        </details>
-        <details>
-          <summary>¿Atienden en qué ciudades?</summary>
-          <p>Trabajamos en Colombia y evaluamos cobertura según cada proyecto.</p>
-        </details>
-        <details>
-          <summary>¿Cómo se contrata el servicio?</summary>
-          <p>Agendamos una reunión, definimos el alcance y formalizamos la propuesta.</p>
+
+        <details class="accordion__item">
+          <summary class="accordion__summary">¿Pueden apoyar auditoría o revisoría fiscal?</summary>
+          <div class="accordion__content">
+            <p>Sí. Ofrecemos revisoría fiscal y auditoría, además de acompañamiento en control interno y cumplimiento.</p>
+          </div>
         </details>
       </div>
     </div>
   </section>
 
-  <section class="section section--alt" id="contacto">
+  <!-- CONTACT -->
+  <section class="section" id="contacto">
     <div class="container contact">
       <div class="contact__info">
-        <p class="eyebrow">Contacto</p>
-        <h2>Hablemos de tu copropiedad</h2>
-        <p class="muted">Déjanos tus datos y te contactamos para una asesoría profesional.</p>
+        <h2 class="section__title">Hablemos</h2>
+        <p class="section__desc">
+          Cuéntanos sobre tu copropiedad y te enviamos una propuesta.
+        </p>
 
-        <div class="infoBox">
-          <div><strong>WhatsApp:</strong> <span class="muted" id="waNumberText">+57 300 000 0000</span></div>
-          <div><strong>Correo:</strong> <span class="muted" id="emailText">contacto@dominio.com</span></div>
-          <div><strong>Ciudad / Cobertura:</strong> <span class="muted">Colombia</span></div>
-          <div><strong>Horario:</strong> <span class="muted">Atención según agenda</span></div>
+        <div class="contact__cards">
+          <div class="mini">
+            <div class="mini__icon">📞</div>
+            <div class="mini__body">
+              <p class="mini__label">WhatsApp</p>
+              <p class="mini__value" id="whatsappDisplay">+57 300 000 0000</p>
+            </div>
+          </div>
+
+          <div class="mini">
+            <div class="mini__icon">✉️</div>
+            <div class="mini__body">
+              <p class="mini__label">Correo</p>
+              <p class="mini__value" id="emailDisplay">ad.pc1616@gmail.com</p>
+            </div>
+          </div>
         </div>
 
-        <a class="btn btn--primary btn--block" id="btnWhats" href="#">Escribir por WhatsApp</a>
-        <p class="muted small">La información será tratada conforme a la política de privacidad.</p>
+        <p class="note">
+          Si prefieres, puedes escribirnos directo por WhatsApp o usar el formulario.
+        </p>
       </div>
 
-      <form class="form" id="contactForm">
+      <form class="form" id="contactForm" autocomplete="on">
         <div class="form__row">
-          <label>
-            Nombre
-            <input type="text" name="name" placeholder="Tu nombre" required />
-          </label>
-          <label>
-            Teléfono
-            <input type="tel" name="phone" placeholder="Tu número" required />
-          </label>
+          <label class="form__label" for="name">Nombre</label>
+          <input class="form__input" id="name" name="name" type="text" placeholder="Tu nombre" required />
         </div>
 
         <div class="form__row">
-          <label>
-            Correo
-            <input type="email" name="email" placeholder="tucorreo@email.com" required />
-          </label>
-          <label>
-            Copropiedad
-            <input type="text" name="property" placeholder="Nombre de la copropiedad" required />
-          </label>
+          <label class="form__label" for="phone">Teléfono</label>
+          <input class="form__input" id="phone" name="phone" type="tel" placeholder="+57 3XX XXX XXXX" />
         </div>
 
         <div class="form__row">
-          <label>
-            Ciudad
-            <input type="text" name="city" placeholder="Ciudad" required />
-          </label>
-          <label>
-            Servicio
-            <select name="service" required>
-              <option value="" selected disabled>Selecciona una opción</option>
-              <option>Administración</option>
-              <option>Contabilidad</option>
-              <option>Aseo</option>
-              <option>Mantenimiento</option>
-              <option>Conserjería</option>
-              <option>Revisoría Fiscal</option>
-              <option>Auditoría</option>
-              <option>Recuperación de Cartera</option>
-              <option>Estudio de costos y presupuestos</option>
-              <option>Automatización de portería</option>
-              <option>Servicios afines</option>
-            </select>
-          </label>
+          <label class="form__label" for="email">Correo</label>
+          <input class="form__input" id="email" name="email" type="email" placeholder="tu@correo.com" required />
         </div>
 
-        <label>
-          Mensaje
-          <textarea name="message" rows="5" placeholder="Cuéntanos tu caso" required></textarea>
-        </label>
-
-        <div class="form__actions">
-          <button class="btn btn--primary" type="submit" id="sendBtn" aria-label="Enviar formulario">Enviar</button>
-          <span class="muted small" id="formStatus"></span>
+        <div class="form__row">
+          <label class="form__label" for="service">Servicio</label>
+          <select class="form__select" id="service" name="service">
+            <option value="Administración">Administración</option>
+            <option value="Contabilidad">Contabilidad</option>
+            <option value="Aseo">Aseo</option>
+            <option value="Mantenimiento">Mantenimiento</option>
+            <option value="Conserjería">Conserjería</option>
+            <option value="Revisoría Fiscal">Revisoría Fiscal</option>
+            <option value="Auditoría">Auditoría</option>
+            <option value="Recuperación de cartera">Recuperación de cartera</option>
+            <option value="Costos y presupuestos">Costos y presupuestos</option>
+            <option value="Automatización de portería">Automatización de portería</option>
+            <option value="Otro">Otro</option>
+          </select>
         </div>
 
-        <p class="muted small tip">
-          Este formulario envía la solicitud con EmailJS (sin servidor). Configura tus claves en
-          <code>assets/js/main.js</code>. Si no está configurado, se abrirá WhatsApp con el mensaje armado.
+        <div class="form__row">
+          <label class="form__label" for="message">Mensaje</label>
+          <textarea class="form__textarea" id="message" name="message" rows="5" placeholder="Cuéntanos lo que necesitas" required></textarea>
+        </div>
+
+        <button class="btn btn--primary btn--block" type="submit" id="submitBtn">
+          Enviar solicitud
+        </button>
+
+        <p class="form__hint" id="formHint">
+        Nos pondremos en contacto contigo pronto.
         </p>
       </form>
     </div>
   </section>
 
+  <!-- FOOTER -->
   <footer class="footer">
-    <div class="container footer__content">
-      <div>
-        <strong>Umbrella Inmobiliaria SAS</strong>
-        <p class="muted small">Servicios integrales para Propiedades Horizontales.</p>
-      </div>
-      <div class="footer__links">
-        <a href="#inicio">Inicio</a>
-        <a href="#servicios">Servicios</a>
-        <a href="#contacto">Contacto</a>
-      </div>
-      <span class="muted">© <span id="year"></span></span>
+    <div class="container footer__inner">
+      <p class="footer__copy">© <span id="year"></span> Umbrella Inmobiliaria SAS. Todos los derechos reservados.</p>
+      <a class="footer__link" href="#top">Volver arriba ↑</a>
     </div>
   </footer>
-
-  <a class="whatsappFloat" id="whatsFloat" href="#" aria-label="Escribir por WhatsApp">
-    <span>💬</span>
-  </a>
 
   <script src="assets/js/main.js"></script>
 </body>
